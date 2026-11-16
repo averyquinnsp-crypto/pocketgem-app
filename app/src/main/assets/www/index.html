@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>PocketGem</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="logo-gem">💎</div>
+        <div>
+          <h1 class="app-title">PocketGem</h1>
+          <div class="status-indicator" id="statusIndicator">
+            <span class="status-dot online"></span>
+            <span id="statusText">Termux Ready</span>
+          </div>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="icon-btn" id="clearChatBtn" title="Clear Chat">🗑️</button>
+        <button class="icon-btn" id="openSettingsBtn" title="Settings">⚙️</button>
+      </div>
+    </header>
+
+    <!-- Chat Messages -->
+    <main class="chat-container" id="chatContainer">
+      <div class="welcome-card">
+        <div class="welcome-icon">⚡</div>
+        <h2>Welcome to PocketGem</h2>
+        <p>Your autonomous mobile AI coding agent. It directly executes terminal commands in Termux, manages files, and solves complex coding tasks.</p>
+        <div class="quick-examples">
+          <button class="chip-example" onclick="sendQuickPrompt('List all files in my current Termux folder')">📁 List Files</button>
+          <button class="chip-example" onclick="sendQuickPrompt('Check python and node versions in Termux')">⚙️ Check Versions</button>
+          <button class="chip-example" onclick="sendQuickPrompt('Create a simple node express server on port 3000')">🚀 Create Express Server</button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Quick Action Chips -->
+    <div class="action-chips">
+      <button class="chip" id="chipModel">🧠 <span id="chipModelText">openrouter/free</span></button>
+      <button class="chip" id="chipYolo">🛡️ YOLO: <span id="chipYoloText">OFF</span></button>
+      <button class="chip" id="chipCompact">📦 /compact</button>
+    </div>
+
+    <!-- Input Bar -->
+    <footer class="input-bar">
+      <div class="input-wrapper">
+        <textarea id="userInput" placeholder="Ask PocketGem to run, code, or automate..." rows="1"></textarea>
+        <button class="send-btn" id="sendBtn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Settings Modal -->
+  <div class="modal-overlay" id="settingsModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>PocketGem Settings</h3>
+        <button class="close-btn" id="closeSettingsBtn">✕</button>
+      </div>
+      <div class="modal-body">
+        <label class="setting-label">OpenRouter API Key:</label>
+        <input type="password" id="apiKeyInput" class="setting-input" placeholder="sk-or-v1-...">
+
+        <label class="setting-label">Active AI Model:</label>
+        <select id="modelSelect" class="setting-select">
+          <option value="openrouter/free">openrouter/free (Auto-Router)</option>
+          <option value="nvidia/nemotron-3.5-lightning:free">nvidia/nemotron-3.5-lightning:free</option>
+          <option value="google/gemma-4-31b-it:free">google/gemma-4-31b-it:free</option>
+          <option value="google/gemma-4-26b-a4b-it:free">google/gemma-4-26b-a4b-it:free</option>
+          <option value="cohere/north-mini-code:free">cohere/north-mini-code:free</option>
+          <option value="deepseek/deepseek-chat">deepseek/deepseek-chat</option>
+          <option value="deepseek/deepseek-r1">deepseek/deepseek-r1</option>
+        </select>
+
+        <label class="setting-label">Termux Bridge URL:</label>
+        <input type="text" id="bridgeUrlInput" class="setting-input" value="http://127.0.0.1:3000">
+
+        <button class="save-btn" id="saveSettingsBtn">Save Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
